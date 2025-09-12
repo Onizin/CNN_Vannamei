@@ -1,0 +1,4 @@
+Image: c:\ujicobaprogram\Deteksi Vannamei\data\windu2_flipped_h_denoised_removal_gray.jpg
+Prediction: 1
+Class: Bukan_Udang
+Processing time: 87.12 seconds

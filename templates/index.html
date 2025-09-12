@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Upload Files for Detection</h1>
+        <form id="uploadForm" action="/upload_files" method="post" enctype="multipart/form-data" class="mb-4">
+            <div class="form-group">
+                <input type="file" name="files" id="fileInput" multiple class="form-control-file">
+            </div>
+            <div class="form-group text-center">
+                <button type="button" id="showImagesButton" class="btn btn-primary">Tampilkan Gambar</button>
+                <input type="submit" value="Upload" class="btn btn-success">
+            </div>
+        </form>
+        <div class="text-center mb-4">
+            <button type="button" id="processImagesButton" class="btn btn-warning" style="display: none;">Process Images</button>
+            <button type="button" id="stopProcessButton" class="btn btn-danger" style="display: none;">Stop Process</button>
+        </div>
+        <div class="loading text-center mb-4" id="loading" style="display: none;">Processing... 0 detik</div>
+        <div class="image-container mb-4" id="imageContainer">
+            <table id="fileTable" class="table table-bordered">
+                <thead id="fileTableHead" style="display: none;">
+                    <tr>
+                        <th>Image</th>
+                        <th>Image</th>
+                        <th>Image</th>
+                        <th>Image</th>
+                    </tr>
+                </thead>
+                <tbody id="fileTableBody">
+                    <!-- Files will be displayed here -->
+                </tbody>
+            </table>
+        </div>
+        <div class="form-group">
+            <label for="processingTime">Processing Time:</label>
+            <input type="text" id="processingTime" class="form-control" readonly>
+        </div>
+        <div class="text-center">
+            <button id="backButton" class="btn btn-secondary" style="display: none;" onclick="location.reload();">Back</button>
+        </div>
+    </div>
+    <script>
+        let intervalId;
+
+        document.getElementById('showImagesButton').addEventListener('click', function() {
+            const fileInput = document.getElementById('fileInput');
+            const files = fileInput.files;
+            const fileTableBody = document.getElementById('fileTableBody');
+            const fileTableHead = document.getElementById('fileTableHead');
+            fileTableBody.innerHTML = '';
+            fileTableHead.style.display = 'table-header-group'; // Show thead
+            const numColumns = Math.min(files.length, 4);
+            for (let i = 0; i < files.length; i += numColumns) {
+                const row = document.createElement('tr');
+                for (let j = 0; j < numColumns; j++) {
+                    if (i + j < files.length) {
+                        const file = files[i + j];
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            const cell = document.createElement('td');
+                            cell.innerHTML = `
+                                <img src="${e.target.result}" alt="Raw Image" style="width: 100px; height: 100px; object-fit: cover;">
+                                <div>${file.name}</div>
+                            `;
+                            row.appendChild(cell);
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        const emptyCell = document.createElement('td');
+                        row.appendChild(emptyCell);
+                    }
+                }
+                fileTableBody.appendChild(row);
+            }
+        });
+
+        document.getElementById('uploadForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const fileInput = document.querySelector('input[type="file"]');
+            const files = fileInput.files;
+            if (files.length > 0) {
+                const formData = new FormData();
+                for (let i = 0; i < files.length; i++) {
+                    formData.append('files', files[i]);
+                }
+                const loadingElement = document.getElementById('loading');
+                loadingElement.style.display = 'block';
+                const startTime = Date.now();
+                fetch('/upload_files', {
+                    method: 'POST',
+                    body: formData
+                }).then(response => response.json()).then(data => {
+                    loadingElement.style.display = 'none';
+                    const endTime = Date.now();
+                    const processingTime = Math.round((endTime - startTime) / 1000);
+                    document.getElementById('processingTime').value = `${processingTime} detik`;
+                    document.getElementById('processImagesButton').style.display = 'block';
+                    // Display uploaded and processed images
+                    const fileTableBody = document.getElementById('fileTableBody');
+                    const fileTableHead = document.getElementById('fileTableHead');
+                    fileTableBody.innerHTML = '';
+                    fileTableHead.style.display = 'table-header-group'; // Show thead
+                    const numColumns = Math.min(data.length, 4);
+                    for (let i = 0; i < data.length; i += numColumns) {
+                        const row = document.createElement('tr');
+                        for (let j = 0; j < numColumns; j++) {
+                            if (i + j < data.length) {
+                                const file = data[i + j];
+                                const cell = document.createElement('td');
+                                cell.innerHTML = `
+                                    <img src="${file.processed_image_url}" alt="Processed Image" style="width: 100px; height: 100px; object-fit: cover;">
+                                    <div>${file.filename}</div>
+                                `;
+                                row.appendChild(cell);
+                            } else {
+                                const emptyCell = document.createElement('td');
+                                row.appendChild(emptyCell);
+                            }
+                        }
+                        fileTableBody.appendChild(row);
+                    }
+                }).catch(error => {
+                    console.error('Error:', error);
+                    loadingElement.style.display = 'none';
+                });
+            }
+        });
+
+        document.getElementById('processImagesButton').addEventListener('click', function() {
+            const loadingElement = document.getElementById('loading');
+            const stopProcessButton = document.getElementById('stopProcessButton');
+            loadingElement.style.display = 'block';
+            stopProcessButton.style.display = 'block';
+            const startTime = Date.now();
+
+            // Update processing time every second
+            intervalId = setInterval(() => {
+                const currentTime = Date.now();
+                const elapsedTime = Math.round((currentTime - startTime) / 1000);
+                document.getElementById('processingTime').value = `${elapsedTime} detik`;
+                loadingElement.textContent = `Processing... ${elapsedTime} detik`;
+            }, 1000);
+
+            fetch('/process_files', {
+                method: 'POST'
+            }).then(response => response.json()).then(data => {
+                clearInterval(intervalId);
+                loadingElement.style.display = 'none';
+                stopProcessButton.style.display = 'none';
+                const endTime = Date.now();
+                const processingTime = Math.round((endTime - startTime) / 1000);
+                document.getElementById('processingTime').value = `${processingTime} detik`;
+                document.getElementById('backButton').style.display = 'block';
+                // Display processed images and results
+                const fileTableBody = document.getElementById('fileTableBody');
+                fileTableBody.innerHTML = '';
+                const numColumns = Math.min(data.length, 4);
+                for (let i = 0; i < data.length; i += numColumns) {
+                    const row = document.createElement('tr');
+                    for (let j = 0; j < numColumns; j++) {
+                        if (i + j < data.length) {
+                            const file = data[i + j];
+                            const cell = document.createElement('td');
+                            cell.innerHTML = `
+                                <img src="${file.processed_image_url}" alt="Processed Image" style="width: 100px; height: 100px; object-fit: cover;">
+                                <div>${file.filename}</div>
+                                <div>${file.result}</div>
+                            `;
+                            row.appendChild(cell);
+                        } else {
+                            const emptyCell = document.createElement('td');
+                            row.appendChild(emptyCell);
+                        }
+                    }
+                    fileTableBody.appendChild(row);
+                }
+            }).catch(error => {
+                console.error('Error:', error);
+                clearInterval(intervalId);
+                loadingElement.style.display = 'none';
+                stopProcessButton.style.display = 'none';
+            });
+        });
+
+        document.getElementById('stopProcessButton').addEventListener('click', function() {
+            // Stop any ongoing process
+            fetch('/stop_process', {
+                method: 'POST'
+            }).then(response => response.json()).then(data => {
+                console.log(data.status);
+                clearInterval(intervalId);
+                location.reload();
+            }).catch(error => {
+                console.error('Error:', error);
+                clearInterval(intervalId);
+                location.reload();
+            });
+        });
+    </script>
+</body>
+</html>

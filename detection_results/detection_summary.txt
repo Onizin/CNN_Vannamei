@@ -1,0 +1,12 @@
+DETECTION SUMMARY
+================
+
+Total images processed: 2
+Udang Vannamei detected: 1
+Bukan Udang detected: 1
+Processing time: 87.12 seconds
+
+DETAILED RESULTS:
+------------------------------
+udang4_flipped_h_denoised_removal_gray.jpg: Udang_Vannamei
+windu2_flipped_h_denoised_removal_gray.jpg: Bukan_Udang

@@ -1,0 +1,12 @@
+0	udang4_flipped_h_denoised_removal_gray.jpg
+1	udang4_rotated_0_denoised_removal_gray.jpg
+2	udang4_rotated_20_denoised_removal_gray.jpg
+3	udang4_rotated_10_denoised_removal_gray.jpg
+4	windu2_original_denoised_removal_gray.jpg
+5	windu2_flipped_h_denoised_removal_gray.jpg
+6	windu2_flipped_v_denoised_removal_gray.jpg
+7	windu2_rotated_10_denoised_removal_gray.jpg
+8	windu2_rotated_0_denoised_removal_gray.jpg
+9	udang4_original_denoised_removal_gray.jpg
+10	udang4_flipped_v_denoised_removal_gray.jpg
+11	windu2_rotated_20_denoised_removal_gray.jpg

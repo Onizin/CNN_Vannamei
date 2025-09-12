@@ -1,0 +1,4 @@
+Image: c:\ujicobaprogram\Deteksi Vannamei\data\udang4_flipped_h_denoised_removal_gray.jpg
+Prediction: 0
+Class: Udang_Vannamei
+Processing time: 87.12 seconds

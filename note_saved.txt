@@ -1,0 +1,623 @@
+# data = torch.round(torch.tensor(data,dtype=torch.int))
+# labels = torch.tensor(labels)
+# if padding > 0:
+        # Y = torch.nn.functional.pad(Y, (padding,padding,padding,padding))
+
+# indices = torch.randperm(data.shape[0])  # Menghasilkan indeks acak
+# data = data[indices]  # Mengacak data
+# labels = labels[indices]  # Mengacak label
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+print(psutil.virtual_memory())
+print(device)
+# K = [
+    # torch.tensor([[-2.0, -1.0, 0.0],
+    #               [-1.0, 1.0, 1.0],
+    #               [0.0, 1.0, 2.0]]),
+    # torch.tensor([[-2.0, -1.0, 0.0],
+    #               [-1.0, 1.0, 1.0],
+    #               [0.0, 1.0, 2.0]]),
+    # torch.tensor([[-2.0, -1.0, 0.0],
+    #               [-1.0, 1.0, 1.0],
+    #               [0.0, 1.0, 2.0]]),
+    # torch.tensor([[-2.0, -1.0, 0.0],
+    #               [-1.0, 1.0, 1.0],
+    #               [0.0, 1.0, 2.0]]),
+    # torch.tensor([[-2.0, -1.0, 0.0],
+    #               [-1.0, 1.0, 1.0],
+    #               [0.0, 1.0, 2.0]]),
+    # torch.tensor([[-2.0, -1.0, 0.0],
+    #               [-1.0, 1.0, 1.0],
+    #               [0.0, 1.0, 2.0]]),
+    # torch.tensor([[-2.0, -1.0, 0.0],
+    #               [-1.0, 1.0, 1.0],
+    #               [0.0, 1.0, 2.0]]),
+    # torch.tensor([[-2.0, -1.0, 0.0],
+    #               [-1.0, 1.0, 1.0],
+    #               [0.0, 1.0, 2.0]]),
+    # torch.tensor([[-2.0, -1.0, 0.0],
+    #               [-1.0, 1.0, 1.0],
+    #               [0.0, 1.0, 2.0]]),
+    # torch.tensor([[-2.0, -1.0, 0.0],
+    #               [-1.0, 1.0, 1.0],
+    #               [0.0, 1.0, 2.0]]),
+    # torch.tensor([[-2.0, -1.0, 0.0],
+    #               [-1.0, 1.0, 1.0],
+    #               [0.0, 1.0, 2.0]]),
+    # torch.tensor([[-2.0, -1.0, 0.0],
+    #               [-1.0, 1.0, 1.0],
+    #               [0.0, 1.0, 2.0]]),
+    # torch.tensor([[-2.0, -1.0, 0.0],
+    #               [-1.0, 1.0, 1.0],
+    #               [0.0, 1.0, 2.0]]),
+    # torch.tensor([[-2.0, -1.0, 0.0],
+    #               [-1.0, 1.0, 1.0],
+    #               [0.0, 1.0, 2.0]]),
+    # torch.tensor([[-2.0, -1.0, 0.0],
+    #               [-1.0, 1.0, 1.0],
+    #               [0.0, 1.0, 2.0]]),
+    # Tambahkan kernel lain sebanyak 15 total...
+# def corr2d(X, K,padding=0): 
+    
+#     """Compute 2D cross-correlation."""
+#     h, w = K.shape
+#     Y = torch.zeros((X.shape[0] - h + 1, X.shape[1] - w + 1))
+#     for i in range(Y.shape[0]):
+#         for j in range(Y.shape[1]):
+#             Y[i, j] = (X[i:i + h, j:j + w] * K).sum()
+#             if(Y[i,j]>255):
+#                 Y[i,j] = 255
+#             else:
+#                 Y[i,j] 
+#     if padding > 0:
+#         Y = torch.nn.functional.pad(Y, (padding,padding,padding,padding))
+#     return Y
+
+# # Class Conv2D
+# class Conv2D(nn.Module):
+#     def __init__(self, kernel,padding):
+#         super().__init__()
+#         self.weight = nn.Parameter(kernel)  # Kernel sebagai parameter
+#         self.bias = nn.Parameter(torch.zeros(1))  # Bias default 0
+#         self.padding = padding
+#     def forward(self, x):
+#         return corr2d(x, self.weight,padding=self.padding) + self.bias
+
+
+output_dir_rotation_flipping = 'G:\\Coding\\vannamei\\ujicoba MLP\\gambar_aug\\rotate_flip'
+output_brightness = 'G:\\Coding\\vannamei\\ujicoba MLP\\gambar_aug\\brightness'
+output_contrast = 'G:\\Coding\\vannamei\\ujicoba MLP\\gambar_aug\\contrast'
+output_noise = 'G:\\Coding\\vannamei\\ujicoba MLP\\gambar_aug\\noise'
+
+
+# # # Augmentasi rotasi dan flipping
+# augment_rotation_flipping(image_path, output_dir_rotation_flipping)
+
+# # Augmentasi noise menggunakan hasil dari direktori rotate_flip
+# augment_noise(output_dir_rotation_flipping, output_noise)
+
+# # Augmentasi kontras menggunakan hasil dari direktori rotate_flip
+# augment_contrast(output_dir_rotation_flipping, output_contrast, alpha_range=(1.0, 2.0), alpha_step=0.1)
+
+# Augmentasi kecerahan
+# augment_brightness(output_dir_rotation_flipping, output_brightness, beta_range=(0, 100), beta_step=10)
+
+# Tampilkan salah satu hasil augmentasi
+
+# augmented_image = cv2.imread(augmented_image_path)
+# plt.imshow(cv2.cvtColor(augmented_image, cv2.COLOR_BGR2RGB))
+# plt.title('Augmented Image - Rotated 0 with Noise')
+# plt.axis('off')
+# plt.show()
+# training session
+# data = pd.read_csv('F://program//ujicoba MLP//data//train.csv')
+
+# data = np.array(data)
+# m, n = data.shape
+# print(data.shape)
+# print(data)
+# print(m)
+# print(n)
+# np.random.shuffle(data)
+# data_dev = data[0:1000].T
+# print(data_dev)
+# Y_dev = data_dev[0]
+# X_dev = data_dev[1:n]
+# X_dev = X_dev / 255.
+
+# data_train = data[1000:m].T
+# Y_train = data_train[0]
+# X_train = data_train[1:n]
+# X_train = X_train / 255.
+# _,m_train = X_train.shape
+# print(Y_train)
+# print(data_dev)
+# learning_rate = 0.10
+# iterations = 500
+
+# W1, b1, W2, b2 = gradient_descent(X_train, Y_train, learning_rate, iterations)
+
+# test_prediction(0,X_train,Y_train, W1, b1, W2, b2)
+# test_prediction(1,X_train,Y_train, W1, b1, W2, b2)
+# test_prediction(2,X_train,Y_train, W1, b1, W2, b2)
+# test_prediction(3,X_train,Y_train, W1, b1, W2, b2)
+# test_prediction(4,X_train,Y_train, W1, b1, W2, b2)
+
+#new
+def resize_image(image, size=(224, 224)):
+    return image.resize(size)
+
+def image_to_array(image):
+    return np.array(image)  # Mengonversi gambar ke array NumPy
+
+def combined_thresholding_single_image(gray_image):
+    # Menghaluskan gambar untuk mengurangi noise
+    smoothed_image = cv2.GaussianBlur(gray_image, (5, 5), 0)
+    # Adaptive Thresholding
+    adaptive_thresh = cv2.adaptiveThreshold(smoothed_image, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)
+    # Otsu's Thresholding
+    _, otsu_thresh = cv2.threshold(smoothed_image, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+    # Menggabungkan hasil thresholding
+    combined_thresh = cv2.bitwise_or(adaptive_thresh, otsu_thresh)
+    return combined_thresh
+
+def process_single_image(image_path, output_path, kernel1, kernel2):
+    # Memuat gambar
+    image = Image.open(image_path)
+    
+    # Mengubah ukuran gambar
+    image = resize_image(image, size=(224, 224))
+    
+    # Mengonversi gambar ke array NumPy
+    image_array = image_to_array(image)
+    
+    # Mengonversi gambar ke grayscale
+    gray_image = torch.round(torch.tensor(rgb2gray(image_array), dtype=torch.uint8))
+    gray_image_pil = Image.fromarray(gray_image.numpy())
+    
+    # Apply combined thresholding
+    combined_thresh = combined_thresholding_single_image(gray_image.numpy())
+    
+    # Simpan hasil combined thresholding ke disk
+    save_path = os.path.join(output_path, os.path.basename(image_path))
+    Image.fromarray(combined_thresh).save(save_path)
+    print(f"Processed and saved image to {save_path}")
+    
+    # Baca kembali gambar hasil thresholding dari disk
+    combined_thresh_pil = Image.open(save_path)
+    combined_thresh_image = torch.tensor(np.array(combined_thresh_pil), dtype=torch.float32).unsqueeze(0).unsqueeze(0)
+    
+    # Tahapan konvolusi dan pooling
+    conv2d_1 = Conv2D(kernel1, padding=1)
+    Conv1 = conv2d_1(combined_thresh_image)
+    Pool1 = pool2d(Conv1, (2, 2))
+    
+    conv2d_2 = Conv2D(kernel2, padding=1)
+    Conv2 = conv2d_2(Pool1)
+    Pool2 = pool2d(Conv2, (2, 2))
+    
+    Conv3 = conv2d_2(Pool2)
+    Pool3 = pool2d(Conv3, (2, 2))
+    
+    output = Pool3.flatten().reshape((1568, 1))  # Mengubah bentuk output untuk input ke fully connected layer
+    return output
+
+def calculate_similarity(image_path, prediction):
+    # Load image
+    image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
+    
+    # Find pixels similar to the prediction
+    similar_pixels = np.where(image == prediction)
+    
+    # Calculate similarity (placeholder logic)
+    similarity = len(similar_pixels[0])
+    
+    # Print similarity information
+    print(f"Number of similar pixels: {similarity}")
+
+def draw_bounding_box(image_path, bounding_box, label):
+    # Load image
+    image = cv2.imread(image_path)
+    
+    # Unpack bounding box coordinates
+    x, y, w, h = bounding_box
+    
+    # Draw bounding box on the image
+    cv2.rectangle(image, (x, y), (x + w, y + h), (0, 255, 0), 2)
+    
+    # Put label inside the bounding box
+    cv2.putText(image, label, (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)
+    
+    # Display the image with bounding box
+    plt.figure(figsize=(10, 5))
+    plt.title('menuju kesuksesan')
+    plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+    plt.axis('off')
+    plt.show()
+
+def get_similar_pixels(image_path, prediction):
+    # Load image
+    image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
+    
+    # Find pixels similar to the prediction
+    similar_pixels = np.where(image == prediction)
+    
+    # Store similar pixel coordinates in an array
+    similar_pixels_array = np.array(list(zip(similar_pixels[1], similar_pixels[0])))
+    
+    return similar_pixels_array
+
+def print_similar_pixels(similar_pixels_array):
+    # Print similar pixel coordinates
+    for x, y in similar_pixels_array:
+        print(f"Similar pixel at ({x}, {y})")
+
+def get_bounding_box_from_pixels(similar_pixels_array):
+    # Get the minimum and maximum coordinates
+    min_x, min_y = np.min(similar_pixels_array, axis=0)
+    max_x, max_y = np.max(similar_pixels_array, axis=0)
+    
+    # Calculate width and height
+    width = max_x - min_x
+    height = max_y - min_y
+    
+    return (min_x, min_y, width, height)
+
+K = torch.tensor([
+    [[[-2.0, -1.0, 0.0],
+      [-1.0, 1.0, 1.0],
+      [0.0, 1.0, 2.0]]],
+    
+    [[[-1.0, -1.0, -1.0],
+      [-1.0, 8.0, -1.0],
+      [-1.0, -1.0, -1.0]]]
+], dtype=torch.float32)
+
+kernels2 = torch.tensor([
+    [[[-2.0, -1.0, 0.0],
+      [-1.0, 1.0, 1.0],
+      [0.0, 1.0, 2.0]],
+     [[-1.0, -1.0, -1.0],
+      [-1.0, 8.0, -1.0],
+      [-1.0, -1.0, -1.0]]],
+    
+    [[[ 0.0, -1.0,  0.0],
+      [-1.0,  4.0, -1.0],
+      [ 0.0, -1.0,  0.0]],
+     [[ 1.0,  1.0,  1.0],
+      [ 1.0,  1.0,  1.0],
+      [ 1.0,  1.0,  1.0]]]
+], dtype=torch.float32)
+
+file_trainsave = 'E:\\Coding\\vannamei\\ujicoba MLP\\feature_Extract\\z_train\\train.pt'
+checkpoint = torch.load(file_trainsave)
+W1, b1, W2, b2 = checkpoint['W1'], checkpoint['b1'], checkpoint['W2'], checkpoint['b2']
+
+
+image_path = 'E:\\Coding\\vannamei\\ujicoba MLP\\sampah\\coba\\IMG_36533.jpg'
+output_path = 'E:\\Coding\\vannamei\\ujicoba MLP\\training_uji\\train1'
+
+# Memproses gambar
+processed_image = process_single_image(image_path, output_path, K, kernels2)
+
+# Melakukan prediksi pada gambar baru
+prediction = make_predictions(processed_image, W1, b1, W2, b2)
+print("Prediction: ", prediction)
+
+# Get similar pixels
+similar_pixels_array = get_similar_pixels(image_path, prediction)
+
+# Print similar pixels
+print_similar_pixels(similar_pixels_array)
+
+# Generate bounding box coordinates from similar pixels
+bounding_box = get_bounding_box_from_pixels(similar_pixels_array)
+
+# Calculate and print similarity information
+calculate_similarity(image_path, prediction)
+
+# Draw bounding box on the original image with label
+draw_bounding_box(image_path, bounding_box, f'Label: {prediction}')
+
+
+def combined_thresholding(input_dir, output_dir, sample_size=5):
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+
+    image_paths = [os.path.join(input_dir, f) for f in os.listdir(input_dir) if f.endswith('.png') or f.endswith('.jpg')]
+    processed_images = []
+
+    plt.figure(figsize=(15, 10))
+
+    for i, image_path in enumerate(image_paths):
+        # Membaca gambar grayscale
+        gray_image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
+        if gray_image is None:
+            print(f"Error: Gambar tidak ditemukan atau tidak dapat dibaca di path: {image_path}")
+            continue
+
+        # Menghaluskan gambar untuk mengurangi noise
+        smoothed_image = cv2.GaussianBlur(gray_image, (5, 5), 0)
+        # Adaptive Thresholding
+        adaptive_thresh = cv2.adaptiveThreshold(smoothed_image, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)
+        # Otsu's Thresholding
+        _, otsu_thresh = cv2.threshold(smoothed_image, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+        # Menggabungkan hasil thresholding
+        combined_thresh = cv2.bitwise_or(adaptive_thresh, otsu_thresh)
+
+        # Menyimpan hasil combined_thresh
+        base_filename = os.path.splitext(os.path.basename(image_path))[0]
+        combined_output_path = os.path.join(output_dir, f"{base_filename}_combined_thresh.jpg")
+        cv2.imwrite(combined_output_path, combined_thresh)
+        print(f"Saved: {combined_output_path}")
+
+        # Menambahkan hasil ke list
+        processed_images.append(combined_thresh)
+
+        # Menampilkan hasil untuk sampel
+        if i < sample_size:
+            plt.subplot(1, sample_size, i + 1)
+            plt.imshow(combined_thresh, cmap='gray')
+            plt.title(f'Label:')
+            plt.axis('off')
+
+    plt.tight_layout()
+    plt.show()
+
+    processed_images_tensor = torch.tensor(processed_images, dtype=torch.uint8).unsqueeze(1)
+    return processed_images_tensor
+
+def remove_background(image_path):
+    # Load image
+    image = cv2.imread(image_path)
+    
+    # Convert to grayscale
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    
+    # Apply Gaussian Blur
+    blurred = cv2.GaussianBlur(gray, (5, 5), 0)
+    
+    # Apply adaptive thresholding
+    _, binary = cv2.threshold(blurred, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+    
+    # Invert binary image
+    binary = cv2.bitwise_not(binary)
+    
+    # Find contours
+    contours, _ = cv2.findContours(binary, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    
+    # Create mask
+    mask = np.zeros_like(gray)
+    
+    # Draw contours on the mask
+    cv2.drawContours(mask, contours, -1, (255), thickness=cv2.FILLED)
+    
+    # Dilate the mask to ensure the entire object is captured
+    kernel = np.ones((5, 5), np.uint8)
+    mask = cv2.dilate(mask, kernel, iterations=2)
+    
+    # Bitwise-and to remove background
+    segmented_image = cv2.bitwise_and(image, image, mask=mask)
+    
+    # Enhance the segmented image
+    hsv = cv2.cvtColor(segmented_image, cv2.COLOR_BGR2HSV)
+    h, s, v = cv2.split(hsv)
+    v = cv2.equalizeHist(v)
+    enhanced_image = cv2.merge((h, s, v))
+    enhanced_image = cv2.cvtColor(enhanced_image, cv2.COLOR_HSV2BGR)
+    
+    # Display results
+    plt.figure(figsize=(10, 5))
+    plt.subplot(1, 2, 1)
+    plt.title('Original Image')
+    plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+    plt.subplot(1, 2, 2)
+    plt.title('Segmented and Enhanced Image')
+    plt.imshow(cv2.cvtColor(enhanced_image, cv2.COLOR_BGR2RGB))
+    plt.show()
+
+# Example usage
+print("testing")
+input_dir = 'E:\\Coding\\vannamei\\ujicoba MLP\\sampah\\coba'
+output_dir = 'E:\\Coding\\vannamei\\ujicoba MLP\\gambar_output'
+conbined_thresh = combined_thresholding(input_dir, output_dir, sample_size=5)
+
+def display_sample_from_file(file_path, sample_index=0):
+    # Load the saved data
+    loaded_data = torch.load(file_path)
+    pool = loaded_data['pool3']
+    labels = loaded_data['labels']
+
+    # Display the shape of the loaded tensors
+    print(f"Loaded pool tensor shape: {pool.shape}")
+    print(f"Loaded labels tensor shape: {labels.shape}")
+
+    # Count the number of labels 0 and 1
+    label_counts = torch.bincount(labels)
+    print(f"Number of label 0: {label_counts[0]}")
+    print(f"Number of label 1: {label_counts[1]}")
+
+    # Extract the sample and its label
+    sample_pool = pool[sample_index]
+    sample_label = labels[sample_index]
+
+    # Display the sample
+    plt.figure(figsize=(5, 5))
+    plt.imshow(sample_pool[0].detach().numpy(), cmap='gray')  # Assuming the first channel is to be displayed
+    plt.title(f"Label: {sample_label}")
+    plt.axis("off")
+    plt.show()
+
+# File path to the saved data
+pool3_file_path = 'E:\\Coding\\vannamei\\ujicoba MLP\\feature_Extract\\pool3\\pool3.pt'
+
+# Display a sample from the saved file
+# display_sample_from_file(pool3_file_path, sample_index=0)
+
+file_path = 'E:\\Coding\\vannamei\\ujicoba MLP\\feature_Extract\\conv1\\conv1.pt'
+
+num_samples = 4  # Jumlah sampel yang akan ditampilkan
+# Memuat kembali tensor dan label dari file
+loaded_data = torch.load(file_path)
+loaded_conv = loaded_data['conv']
+loaded_labels = loaded_data['labels']
+
+# Menampilkan informasi tensor dan label yang dimuat
+print(f"Loaded conv tensor shape: {loaded_conv.shape}")
+print(f"Loaded labels tensor shape: {loaded_labels.shape}")
+print(loaded_conv[0].shape)
+# Menampilkan satu gambar dengan semua channel
+sample_index = 0  # Index gambar yang ingin ditampilkan
+num_channels = loaded_conv.shape[1]  # Jumlah channel
+
+fig, axes = plt.subplots(1, num_channels, figsize=(15, 5))  # 1 row, num_channels columns
+for i in range(num_channels):
+    img = loaded_conv[sample_index, i].detach().numpy()  # Ambil channel i dari gambar sample_index
+    axes[i].imshow(img, cmap='gray')  # Menampilkan channel dalam grayscale
+    axes[i].set_title(f"Channel {i+1}")  # Judul untuk tiap channel
+    axes[i].axis("off")
+
+plt.tight_layout()
+plt.show()
+
+uji = torch.tensor(loaded_conv[0], dtype=torch.uint8)
+uji = uji.unsqueeze(0)
+print(uji.shape)
+
+Pool = pool2d(uji, pool_size=(2, 2), stride=(2, 2), mode='max')
+kernels2 = torch.tensor([
+    [[[-2.0, -1.0, 0.0],
+      [-1.0, 1.0, 1.0],
+      [0.0, 1.0, 2.0]],
+     [[-1.0, -1.0, -1.0],
+      [-1.0, 8.0, -1.0],
+      [-1.0, -1.0, -1.0]]],
+    
+    [[[ 0.0, -1.0,  0.0],
+      [-1.0,  4.0, -1.0],
+      [ 0.0, -1.0,  0.0]],
+     [[ 1.0,  1.0,  1.0],
+      [ 1.0,  1.0,  1.0],
+      [ 1.0,  1.0,  1.0]]]
+], dtype=torch.float32)
+print(kernels2.shape)
+conv2d_2 = Conv2D(kernels2,padding=1)
+Conv_2 = conv2d_2(Pool.float())
+Pool_2 = pool2d(Conv_2,(2,2))
+Conv_3 = conv2d_2(Pool_2.float())
+Pool_3 = pool2d(Conv_3,(2,2))
+
+
+# # Save the pooling result as a .pt file
+# save_path_pt = 'E:\\Coding\\vannamei\\ujicoba MLP\\feature_Extract\\z_train\\pool3.pt'
+# torch.save({'pool': Pool}, save_path_pt)
+
+# Save the pooling result as a .png image
+save_path_png = 'E:\\Coding\\vannamei\\ujicoba MLP\\feature_Extract\\z_train\\pool3.png'
+fig, axes = plt.subplots(1, num_channels, figsize=(15, 5))  # 1 row, num_channels columns
+for i in range(num_channels):
+    img = Pool_3[0, i].detach().numpy()  # Ambil channel i dari gambar sample_index
+    axes[i].imshow(img, cmap='gray')  # Menampilkan channel dalam grayscale
+    axes[i].set_title(f"Channel {i+1}")  # Judul untuk tiap channel
+    axes[i].axis("off")
+
+plt.tight_layout()
+plt.savefig(save_path_png)
+plt.show()
+
+def combined_thresholding(input_dir, output_dir, labels, sample_size=5):
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+
+    image_paths = [os.path.join(input_dir, f) for f in os.listdir(input_dir) if f.endswith('.png') or f.endswith('.jpg')]
+    processed_images = []
+
+    plt.figure(figsize=(15, 10))
+
+    for i, image_path in enumerate(image_paths):
+        # Membaca gambar grayscale
+        gray_image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
+        if gray_image is None:
+            print(f"Error: Gambar tidak ditemukan atau tidak dapat dibaca di path: {image_path}")
+            continue
+
+        # Menghaluskan gambar untuk mengurangi noise
+        smoothed_image = cv2.GaussianBlur(gray_image, (5, 5), 0)
+        # Adaptive Thresholding
+        adaptive_thresh = cv2.adaptiveThreshold(smoothed_image, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)
+        # Otsu's Thresholding
+        _, otsu_thresh = cv2.threshold(smoothed_image, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+        # Menggabungkan hasil thresholding
+        combined_thresh = cv2.bitwise_or(adaptive_thresh, otsu_thresh)
+
+        # Menyimpan hasil combined_thresh
+        base_filename = os.path.splitext(os.path.basename(image_path))[0]
+        combined_output_path = os.path.join(output_dir, f"{base_filename}_combined_thresh_{labels[i]}.jpg")
+        cv2.imwrite(combined_output_path, combined_thresh)
+        print(f"Saved: {combined_output_path}")
+
+        # Menambahkan hasil ke list
+        processed_images.append(combined_thresh)
+
+        # Menampilkan hasil untuk sampel
+        if i < sample_size:
+            plt.subplot(1, sample_size, i + 1)
+            plt.imshow(combined_thresh, cmap='gray')
+            plt.title(f'Label: {labels[i]}')
+            plt.axis('off')
+
+    plt.tight_layout()
+    plt.show()
+
+    processed_images_tensor = torch.tensor(processed_images, dtype=torch.uint8).unsqueeze(1)
+    return processed_images_tensor
+
+
+# def plot_parameters(W1_history, b1_history, W2_history, b2_history, interval=50):
+#     iterations = len(W1_history)
+    
+#     if iterations == 0:
+#         print("No history data to plot.")
+#         return
+    
+#     print(f"Total iterations: {iterations}")
+#     print(f"Plotting every {interval} iterations.")
+    
+#     # Plot W1
+#     plt.figure(figsize=(10, 8))
+#     for i in range(0, iterations, interval):
+#         plt.plot(W1_history[i].flatten(), label=f'Iter {i}')
+#     plt.title('W1')
+#     plt.legend()
+#     plt.grid(True)
+#     plt.tight_layout()
+#     plt.show()
+    
+#     # Plot b1
+#     plt.figure(figsize=(10, 8))
+#     for i in range(0, iterations, interval):
+#         plt.plot(b1_history[i].flatten(), label=f'Iter {i}')
+#     plt.title('b1')
+#     plt.legend()
+#     plt.grid(True)
+#     plt.tight_layout()
+#     plt.show()
+    
+#     # Plot W2
+#     plt.figure(figsize=(10, 8))
+#     for i in range(0, iterations, interval):
+#         plt.plot(W2_history[i].flatten(), label=f'Iter {i}')
+#     plt.title('W2')
+#     plt.legend()
+#     plt.grid(True)
+#     plt.tight_layout()
+#     plt.show()
+    
+#     # Plot b2
+#     plt.figure(figsize=(10, 8))
+#     for i in range(0, iterations, interval):
+#         plt.plot(b2_history[i].flatten(), label=f'Iter {i}')
+#     plt.title('b2')
+#     plt.legend()
+#     plt.grid(True)
+#     plt.tight_layout()
+#     plt.show()
