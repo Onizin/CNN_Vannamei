@@ -1,14 +1,2 @@
-Index: 285, True Label: 0, Predicted Label: 1, Filename: udang7_rotated_40_denoised_removal_gray.jpg
-Index: 312, True Label: 0, Predicted Label: 1, Filename: udang4_flipped_v_denoised_removal_gray.jpg
-Index: 123, True Label: 0, Predicted Label: 1, Filename: udang4_rotated_230_denoised_removal_gray.jpg
-Index: 117, True Label: 0, Predicted Label: 1, Filename: udang5_rotated_100_denoised_removal_gray.jpg
-Index: 160, True Label: 0, Predicted Label: 1, Filename: udang4_rotated_140_denoised_removal_gray.jpg
-Index: 114, True Label: 0, Predicted Label: 1, Filename: udang5_rotated_140_denoised_removal_gray.jpg
-Index: 235, True Label: 0, Predicted Label: 1, Filename: udang4_rotated_30_denoised_removal_gray.jpg
-Index: 76, True Label: 0, Predicted Label: 1, Filename: udang5_rotated_240_denoised_removal_gray.jpg
-Index: 324, True Label: 0, Predicted Label: 1, Filename: udang4_rotated_50_denoised_removal_gray.jpg
-Index: 238, True Label: 0, Predicted Label: 1, Filename: udang4_rotated_250_denoised_removal_gray.jpg
-Index: 211, True Label: 0, Predicted Label: 1, Filename: udang5_rotated_50_denoised_removal_gray.jpg
+Index: 277, True Label: 0, Predicted Label: 1, Filename: udang9_rotated_30_denoised_removal_gray.jpg
 Index: 339, True Label: 0, Predicted Label: 1, Filename: udang9_rotated_10_denoised_removal_gray.jpg
-Index: 25, True Label: 0, Predicted Label: 1, Filename: udang5_rotated_230_denoised_removal_gray.jpg
-Index: 169, True Label: 0, Predicted Label: 1, Filename: udang4_rotated_220_denoised_removal_gray.jpg

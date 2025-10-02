@@ -9,7 +9,7 @@ from training import calculate_accuracy, plot_and_save_confusion_matrix
 from sklearn.metrics import confusion_matrix
 from training import save_test_prediction_accuracy
 
-dataset_path = "c:\\ujicobaprogram\\Deteksi Vannamei\\gambarinput\\preprocessing\\resize_grayscale"
+dataset_path = "C:\\CNN_Vannamei\\gambarinput\\preprocessing\\resize_grayscale"
 
 data, labels, filenames = load_dataset(dataset_path)
 
@@ -39,7 +39,7 @@ Kernel = K
 conv2d = Conv2D(Kernel,padding=1)
 Conv = conv2d(data.float())
 print(Conv.shape)
-output_fileconv1 = 'c:\\ujicobaprogram\\Deteksi Vannamei\\feature_Extract\\conv1\\conv1.pt'
+output_fileconv1 = 'c:\\CNN_vannamei\\feature_Extract\\conv1\\conv1.pt'
 data_to_save = {
     'conv': Conv,
     'labels': labels,
@@ -72,7 +72,7 @@ torch.save(data_to_save, output_fileconv1)
 Pool = pool2d(Conv,(2,2))
 print(Pool.shape)
 # display_images(Pool, labels, num_samples)
-output_filepool1 = 'c:\\ujicobaprogram\\Deteksi Vannamei\\feature_Extract\\pool1\\pool1.pt'
+output_filepool1 = 'C:\\CNN_Vannamei\\feature_Extract\\pool1\\pool1.pt'
 data_to_save = {
     'pool': Pool,
     'labels': labels,
@@ -116,7 +116,7 @@ print(Kernel2.shape)
 conv2d_2 = Conv2D(Kernel2, padding=1)
 Conv_2 = conv2d_2(Pool.float())
 print(Conv_2.shape)
-output_fileconv2 = 'c:\\ujicobaprogram\\Deteksi Vannamei\\feature_Extract\\conv2\\conv2.pt'
+output_fileconv2 = 'C:\\CNN_Vannamei\\feature_Extract\\conv2\\conv2.pt'
 data_to_save = {
     'conv2': Conv_2,
     'labels': labels,
@@ -145,7 +145,7 @@ torch.save(data_to_save, output_fileconv2)
 # # # pooling layer 2
 Pool_2 = pool2d(Conv_2,(2,2))
 print(Pool_2.shape)
-output_filepool2 = 'c:\\ujicobaprogram\\Deteksi Vannamei\\feature_Extract\\pool2\\pool2.pt'
+output_filepool2 = 'C:\\CNN_Vannamei\\feature_Extract\\pool2\\pool2.pt'
 data_to_save = {
     'pool2': Pool_2,
     'labels': labels,
@@ -175,7 +175,7 @@ torch.save(data_to_save, output_filepool2)
 Conv_3 = conv2d_2(Pool_2.float())
 print(Conv_3.shape)
 
-output_fileconv3 = 'c:\\ujicobaprogram\\Deteksi Vannamei\\feature_Extract\\conv3\\conv3.pt'
+output_fileconv3 = 'C:\\CNN_Vannamei\\feature_Extract\\conv3\\conv3.pt'
 data_to_save = {
     'conv3': Conv_3,
     'labels': labels,
@@ -206,7 +206,7 @@ torch.save(data_to_save, output_fileconv3)
 # # pooling layer 3
 Pool_3 = pool2d(Conv_3,(2,2))
 print(Pool_3.shape)
-output_filepool3 = 'c:\\ujicobaprogram\\Deteksi Vannamei\\feature_Extract\\pool3\\pool3.pt'
+output_filepool3 = 'C:\\CNN_Vannamei\\feature_Extract\\pool3\\pool3.pt'
 data_to_save = {
     'pool3': Pool_3,
     'labels': labels,
@@ -233,7 +233,7 @@ torch.save(data_to_save, output_filepool3)
 # tahap training
 # ==================================================================
 # flatten
-file_path = 'c:\\ujicobaprogram\\Deteksi Vannamei\\feature_Extract\\pool3\\pool3.pt'
+file_path = 'C:\\CNN_Vannamei\\feature_Extract\\pool3\\pool3.pt'
 # # num_samples = 4  # Jumlah sampel yang akan ditampilkan
 # # Memuat kembali tensor dan label dari file
 loaded_data = torch.load(file_path)
@@ -249,7 +249,7 @@ print(f"Loaded labels tensor shape: {loaded_labels.shape}")
 F = flatten(loaded_conv)
 
 # # Save the flattened tensor along with labels and filenames
-flattened_output_file = 'c:\\ujicobaprogram\\Deteksi Vannamei\\feature_Extract\\after_process\\flattened_output.pt'
+flattened_output_file = 'C:\\CNN_Vannamei\\feature_Extract\\after_process\\flattened_output.pt'
 
 data_to_save = {
     'flattened': F,
@@ -318,5 +318,5 @@ print(predictions)
 print(true_labels)
 
 # Save test prediction accuracy and metrics
-test_prediction_accuracy_path = 'c:\\ujicobaprogram\\Deteksi Vannamei\\feature_Extract\\z_train\\confusion_matrix\\test_predict.txt'
+test_prediction_accuracy_path = 'C:\\CNN_Vannamei\\feature_Extract\\z_train\\confusion_matrix\\test_predict.txt'
 save_test_prediction_accuracy(predictions, true_labels, test_prediction_accuracy_path, ['Udang_Vannamei', 'Bukan_Udang'], test_indices, filenames_test)

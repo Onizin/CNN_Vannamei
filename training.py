@@ -123,15 +123,15 @@ def gradient_descent(X, Y, alpha, iterations, memory_threshold=50, save_interval
                 if accuracy == 1.0:
                     print(f"100% accuracy reached at epoch {epoch}, iteration {i}. Stopping training.")
                     # Save plots and parameters before returning
-                    file_trainsave = 'C:\\ujicobaprogram\\ujicoba MLP\\feature_Extract\\z_train\\train.pt'
+                    file_trainsave = 'C:\\CNN_Vannamei\\feature_Extract\\z_train\\train.pt'
                     torch.save({
                         'W1': best_params[0],
                         'b1': best_params[1],
                         'W2': best_params[2],
                         'b2': best_params[3]
                     }, file_trainsave)
-                    plot_and_save_loss(losses, save_path='C:\\ujicobaprogram\\ujicoba MLP\\feature_Extract\\z_train\\confusion_matrix\\loss.png')
-                    plot_and_save_training_accuracy(accuracies, save_path='C:\\ujicobaprogram\\ujicoba MLP\\feature_Extract\\z_train\\confusion_matrix\\train_accu.png')
+                    plot_and_save_loss(losses, save_path='C:\\CNN_Vannamei\\feature_Extract\\z_train\\confusion_matrix\\loss.png')
+                    plot_and_save_training_accuracy(accuracies, save_path='C:\\CNN_Vannamei\\feature_Extract\\z_train\\confusion_matrix\\train_accu.png')
                     return best_params, W1_history, b1_history, W2_history, b2_history
 
             if i % 100 == 0:
@@ -147,15 +147,15 @@ def gradient_descent(X, Y, alpha, iterations, memory_threshold=50, save_interval
     print("Best Accuracy: ", best_accuracy)
 
     # Save best parameters
-    file_trainsave = 'C:\\ujicobaprogram\\ujicoba MLP\\feature_Extract\\z_train\\train.pt'
+    file_trainsave = 'C:\\CNN_Vannamei\\feature_Extract\\z_train\\train.pt'
     torch.save({
         'W1': best_params[0],
         'b1': best_params[1],
         'W2': best_params[2],
         'b2': best_params[3]
     }, file_trainsave)
-    plot_and_save_loss(losses, save_path='C:\\ujicobaprogram\\ujicoba MLP\\feature_Extract\\z_train\\confusion_matrix\\loss.png')
-    plot_and_save_training_accuracy(accuracies, save_path='C:\\ujicobaprogram\\ujicoba MLP\\feature_Extract\\z_train\\confusion_matrix\\train_accu.png')
+    plot_and_save_loss(losses, save_path='C:\\CNN_Vannamei\\feature_Extract\\z_train\\confusion_matrix\\loss.png')
+    plot_and_save_training_accuracy(accuracies, save_path='C:\\CNN_Vannamei\\feature_Extract\\z_train\\confusion_matrix\\train_accu.png')
     return best_params, W1_history, b1_history, W2_history, b2_history
 
 def plot_and_save_training_accuracy(accuracies, interval=10, save_path=None):
@@ -249,14 +249,14 @@ def custom_train_test_split(X, y, filenames, test_size=0.25, random_state=None, 
 
     # Save train data to file
     # train_data_path = '/media/ai/Micro/Coding/vannamei/ujicoba MLP/feature_Extract/after_process/train_data.txt'
-    train_data_path = 'C:\\ujicobaprogram\\ujicoba MLP\\feature_Extract\\after_process\\train_data.txt'
+    train_data_path = 'C:\\CNN_Vannamei\\feature_Extract\\after_process\\train_data.txt'
     with open(train_data_path, 'w') as train_file:
         for idx, label, filename in zip(train_indices, y_train, filenames_train):
             train_file.write(f"Index: {idx}, Label: {label}, Filename: {filename}\n")
 
     # Save test data to file
     # test_data_path = '/media/ai/Micro/Coding/vannamei/ujicoba MLP/feature_Extract/after_process/test_data.txt'
-    test_data_path = 'C:\\ujicobaprogram\\ujicoba MLP\\feature_Extract\\after_process\\test_data.txt'
+    test_data_path = 'C:\\CNN_Vannamei\\feature_Extract\\after_process\\test_data.txt'
     with open(test_data_path, 'w') as test_file:
         for idx, label, filename in zip(test_indices, y_test, filenames_test):
             test_file.write(f"Index: {idx}, Label: {label}, Filename: {filename}\n")
@@ -315,10 +315,10 @@ def save_test_prediction_accuracy(predictions, true_labels, save_path, class_nam
     print(f"Test Prediction Accuracy and metrics saved to {save_path}")
 
     # Save TP, TN, FP, FN results
-    tp_path = 'C:\\ujicobaprogram\\ujicoba MLP\\feature_Extract\\after_process\\TP.txt'
-    tn_path = 'C:\\ujicobaprogram\\ujicoba MLP\\feature_Extract\\after_process\\TN.txt'
-    fp_path = 'C:\\ujicobaprogram\\ujicoba MLP\\feature_Extract\\after_process\\FP.txt'
-    fn_path = 'C:\\ujicobaprogram\\ujicoba MLP\\feature_Extract\\after_process\\FN.txt'
+    tp_path = 'C:\\CNN_Vannamei\\feature_Extract\\after_process\\TP.txt'
+    tn_path = 'C:\\CNN_Vannamei\\feature_Extract\\after_process\\TN.txt'
+    fp_path = 'C:\\CNN_Vannamei\\feature_Extract\\after_process\\FP.txt'
+    fn_path = 'C:\\CNN_Vannamei\\feature_Extract\\after_process\\FN.txt'
 
     # tp_path = '/media/ai/Micro/Coding/vannamei/ujicoba MLP/feature_Extract/after_process/TP.txt'
     # tn_path = '/media/ai/Micro/Coding/vannamei/ujicoba MLP/feature_Extract/after_process/TN.txt'
@@ -337,7 +337,7 @@ def save_test_prediction_accuracy(predictions, true_labels, save_path, class_nam
                 else:  # False Negative
                     fn_file.write(f"Index: {test_indices[idx]}, True Label: {true_label}, Predicted Label: {pred_label}, Filename: {filename}\n")
 
-    plot_and_save_confusion_matrix(cm, class_names, "C:\\ujicobaprogram\\ujicoba MLP\\feature_Extract\\z_train\\confusion_matrix")
+    plot_and_save_confusion_matrix(cm, class_names, "C:\\CNN_Vannamei\\feature_Extract\\z_train\\confusion_matrix")
     # plot_and_save_confusion_matrix(cm, class_names,
     #                                "/media/ai/Micro/Coding/vannamei/ujicoba MLP/feature_Extract/z_train/confusion_matrix/")
 

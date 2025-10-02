@@ -206,7 +206,7 @@ def test_conv2d_with_batch(batch_tensor, image_paths):
         
         # Save prediction result to text file
         base_filename = os.path.splitext(os.path.basename(image_path))[0]
-        prediction_file = os.path.join("c:\\ujicobaprogram\\Deteksi Vannamei\\detection_results", f"{base_filename}_prediction.txt")
+        prediction_file = os.path.join("c:\\ujicobaprogram\\CNN_Vannamei\\detection_results", f"{base_filename}_prediction.txt")
         
         with open(prediction_file, 'w') as f:
             f.write(f"Image: {image_path}\n")
@@ -215,7 +215,7 @@ def test_conv2d_with_batch(batch_tensor, image_paths):
             f.write(f"Processing time: {end_time - start_time:.2f} seconds\n")
         
         # Copy original image to results folder with prediction label
-        output_image_path = os.path.join("c:\\ujicobaprogram\\Deteksi Vannamei\\detection_results", 
+        output_image_path = os.path.join("c:\\ujicobaprogram\\CNN_Vannamei\\detection_results", 
                                        f"{base_filename}_{'Vannamei' if prediction == 0 else 'BukanUdang'}.jpg")
         
         # Load and save image with prediction label
@@ -253,7 +253,7 @@ def test_conv2d_with_batch(batch_tensor, image_paths):
         print("-" * 50)
     
     # Save detection summary
-    summary_file = os.path.join("c:\\ujicobaprogram\\Deteksi Vannamei\\detection_results", "detection_summary.txt")
+    summary_file = os.path.join("c:\\ujicobaprogram\\CNN_Vannamei\\detection_results", "detection_summary.txt")
     vannamei_count = sum(1 for p in predictions if p == 0)
     bukan_udang_count = sum(1 for p in predictions if p == 1)
     
@@ -275,8 +275,8 @@ def test_conv2d_with_batch(batch_tensor, image_paths):
     print(f"Total: {len(predictions)} images | Vannamei: {vannamei_count} | Bukan Udang: {bukan_udang_count}")
 
 def main():
-    directory_path = "c:\\ujicobaprogram\\Deteksi Vannamei\\data"
-    output_path = "c:\\ujicobaprogram\\Deteksi Vannamei\\detection_results"
+    directory_path = "c:\\ujicobaprogram\\CNN_Vannamei\\data"
+    output_path = "c:\\ujicobaprogram\\CNN_Vannamei\\detection_results"
     
     # Create output directory if it doesn't exist
     if not os.path.exists(output_path):

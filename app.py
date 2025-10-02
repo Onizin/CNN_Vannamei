@@ -13,8 +13,6 @@ import time  # Import time module
 import concurrent.futures  # Import concurrent.futures for parallel processing
 
 app = Flask(__name__)
-# # dataset_path = "/media/ai/Micro/Coding/vannamei/ujicoba MLP/gambarinput/preprocessing/resize_grayscale"
-# dataset_path = "E:\\vannamei\\ujicoba MLP\\gambarinput\\preprocessing\\resize_grayscale"
 
 def denoise_image(image_path, output_path):
     img = cv2.imread(image_path)
@@ -261,8 +259,7 @@ def test_conv2d_with_batch(batch_tensor, image_paths):
 
     # Transpose the flattened output for predictions
     Y_transposed = Y_flattened.transpose(0, 1)
-    file_trainsave = 'C:\\ujicobaprogram\\ujicoba MLP\\feature_Extract\\z_train\\train.pt'
-    # file_trainsave = '/media/ai/Micro/Coding/vannamei/ujicoba MLP/feature_Extract/z_train/train.pt'
+    file_trainsave = 'C:\\ujicobaprogram\\CNN_Vannamei\\training\\feature_extract\\train.pt'
     checkpoint = torch.load(file_trainsave)
     W1, b1, W2, b2 = checkpoint['W1'], checkpoint['b1'], checkpoint['W2'], checkpoint['b2']
 
@@ -290,12 +287,7 @@ denoized_file_folder = 'C:\\ujicobaprogram\\CNN_Vannamei\\training\\denoized'
 grayscale_output_folder = 'C:\\ujicobaprogram\\CNN_Vannamei\\training\\grayscale'
 feature_extract_folder = 'C:\\ujicobaprogram\\CNN_Vannamei\\training\\feature_extract'
 
-# processed_output_folder = '/media/ai/Micro/Coding/vannamei/ujicoba MLP/training_uji/prediksi'
-# uploaded_files_folder = '/media/ai/Micro/Coding/vannamei/ujicoba MLP/training_uji/uploaded_files'
-# detection_output_folder = '/media/ai/Micro/Coding/vannamei/ujicoba MLP/training_uji/deteksi'
-# denoized_file_folder = '/media/ai/Micro/Coding/vannamei/ujicoba MLP/training_uji/denoized'
-# grayscale_output_folder = '/media/ai/Micro/Coding/vannamei/ujicoba MLP/training_uji/grayscale'
-# feature_extract_folder = '/media/ai/Micro/Coding/vannamei/ujicoba MLP/training_uji/feature_extract'
+
 # Global flag to stop processing
 stop_processing = False
 
