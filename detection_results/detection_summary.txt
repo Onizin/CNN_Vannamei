@@ -4,7 +4,7 @@ DETECTION SUMMARY
 Total images processed: 2
 Udang Vannamei detected: 1
 Bukan Udang detected: 1
-Processing time: 87.12 seconds
+Processing time: 37.14 seconds
 
 DETAILED RESULTS:
 ------------------------------

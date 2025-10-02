@@ -259,7 +259,7 @@ def test_conv2d_with_batch(batch_tensor, image_paths):
 
     # Transpose the flattened output for predictions
     Y_transposed = Y_flattened.transpose(0, 1)
-    file_trainsave = 'C:\\ujicobaprogram\\CNN_Vannamei\\training\\feature_extract\\train.pt'
+    file_trainsave = 'C:\\CNN_Vannamei\\training\\feature_extract\\train.pt'
     checkpoint = torch.load(file_trainsave)
     W1, b1, W2, b2 = checkpoint['W1'], checkpoint['b1'], checkpoint['W2'], checkpoint['b2']
 
@@ -280,12 +280,12 @@ def test_conv2d_with_batch(batch_tensor, image_paths):
 
 
 # Define the path to save processed images
-processed_output_folder = 'C:\\ujicobaprogram\\CNN_Vannamei\\training\\prediksi'
-uploaded_files_folder = 'C:\\ujicobaprogram\\CNN_Vannamei\\training\\uploaded'
-detection_output_folder = 'C:\\ujicobaprogram\\CNN_Vannamei\\training\\deteksi'
-denoized_file_folder = 'C:\\ujicobaprogram\\CNN_Vannamei\\training\\denoized'
-grayscale_output_folder = 'C:\\ujicobaprogram\\CNN_Vannamei\\training\\grayscale'
-feature_extract_folder = 'C:\\ujicobaprogram\\CNN_Vannamei\\training\\feature_extract'
+processed_output_folder = 'C:\\CNN_Vannamei\\training\\prediksi'
+uploaded_files_folder = 'C:\\CNN_Vannamei\\training\\uploaded'
+detection_output_folder = 'C:\\CNN_Vannamei\\training\\deteksi'
+denoized_file_folder = 'C:\\CNN_Vannamei\\training\\denoized'
+grayscale_output_folder = 'C:\\CNN_Vannamei\\training\\grayscale'
+feature_extract_folder = 'C:\\CNN_Vannamei\\training\\feature_extract'
 
 
 # Global flag to stop processing
