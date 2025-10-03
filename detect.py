@@ -281,7 +281,8 @@ def main():
     # Create output directory if it doesn't exist
     if not os.path.exists(output_path):
         os.makedirs(output_path)
-    
+        
+    # initialized variables
     print("CNN Vannamei Detection Started...")
     print(f"Input directory: {directory_path}")
     print(f"Output directory: {output_path}")
